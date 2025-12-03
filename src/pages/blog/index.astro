@@ -24,6 +24,7 @@ const posts = (await getCollection('blog')).sort(
 				flex-wrap: wrap;
 				gap: 2rem;
 				list-style-type: none;
+				flex-direction: column;
 				margin: 0;
 				padding: 0;
 			}
@@ -50,7 +51,15 @@ const posts = (await getCollection('blog')).sort(
 				border-radius: 12px;
 			}
 			ul li a {
-				display: block;
+				display: flex;
+				align-items: flex-start;
+				text-decoration: none;
+			}
+			.content {
+				flex:1;
+				display: flex;
+				flex-direction: column; 
+				justify-content: center;
 			}
 			.title {
 				margin: 0;
@@ -95,10 +104,12 @@ const posts = (await getCollection('blog')).sort(
 							<li>
 								<a href={`/blog/${post.id}/`}>
 									<img width={720} height={360} src={post.data.heroImage} alt="" />
+									<div class="content">
 									<h4 class="title">{post.data.title}</h4>
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
+									</div>
 								</a>
 							</li>
 						))
